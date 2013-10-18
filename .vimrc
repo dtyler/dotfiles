@@ -9,7 +9,6 @@ set smartindent
 set expandtab
 set backspace=2
 " Visuals
-set background=dark
 set showtabline=2
 set scrolloff=2
 set listchars=tab:>-,trail:-
@@ -28,14 +27,14 @@ set shiftwidth=4
 
 " Keybindings
 imap jj <ESC>
-nmap ; :
+nnoremap ; :
+vnoremap ; :
 nmap <F2> :set list!<CR>
 nmap <F3> :registers<CR>
 nmap <F4> :set invhls<CR>
 nmap <F6> :colorscheme desert256<CR>
 nmap <F7> :colorscheme desert<CR>
 nmap <F12> :set number!<CR>
-nnoremap ; :
 map - <C-w>- 
 map + <C-w>+ 
 ab bufs buffers
@@ -43,9 +42,11 @@ ab bufs buffers
 " Deal With term
 if &term =~ "^screen" || &term =~ "^putty" || &term =~ "^rxvt-unicode"
     set t_Co=256
-    colorscheme inkpot
+    set background=dark
 elseif &term =~ "^vt100"
     set background=light
+else
+    set background=dark
 endif
 
 " statusline
@@ -80,3 +81,6 @@ if !exists("my_auto_commands_loaded")
 endif
 " Gvim settings
 highlight Normal guifg=green guibg=black
+
+"disable acp 
+let g:loaded_acp = 1
